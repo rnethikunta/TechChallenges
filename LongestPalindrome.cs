@@ -1,16 +1,14 @@
 			
 			
-			
-        //method 1 which is brute force
+/* method 1 which is brute force /*
+
+    	/*  time complexity: O ( n^3   and Auxiliary complexity : O (1)
+	since method1  is not optimized so we need to look for something better than method1.
 		   
-		    //time complexity: O ( n^3 )
-            //space Space: O (1)
-			//since method1  is not optimized so lets look for something better than method1
-		   
-		//method 2: dynamoic programming. see below for the solution.
+ /* method 2: dynamoic programming. See below for the solution.
 		
 		
-			string str = "banana";
+	    string str = "banana";
             // All substrings of length 1 are palindromes
             int n = str.Length;
             bool[,] table = new bool[n, n];
@@ -57,9 +55,9 @@
                     }
                 }
             }
-			 Console.WriteLine(str.Substring(start, maxLength)) ;
-			 // the output is  anana
-            //MessageBox.Show(str.Substring(start, maxLength));
+		Console.WriteLine(str.Substring(start, maxLength)) ;
+	      	// the output is  anana
+            	//MessageBox.Show(str.Substring(start, maxLength));
 			
-			 //Time complexity: O ( n^2 )
-             //Space Space: O ( n^2 )
+	 //Time complexity: O(n^2)
+         ///Auxiliary complexity: O(n^2)

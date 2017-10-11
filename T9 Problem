@@ -1,0 +1,38 @@
+public class T9BruteForce
+    {
+        public Dictionary<char, string> map;
+        public T9BruteForce()
+        {
+            map = new Dictionary<char, string>();
+            map.Add('2', "abc");
+            map.Add('3', "def");
+            map.Add('4', "ghi");
+            map.Add('5', "jkl");
+            map.Add('6', "mno");
+            map.Add('7', "pqrs");
+            map.Add('8', "tuv");
+            map.Add('9', "wxyz");
+        }
+        public void getValidWords(string number, int index, string prefix, HashSet<string> wordSet, List<string> result)
+        {
+            if (index == number.Length && wordSet.Contains(prefix))
+            {
+                result.Add(prefix);
+                return;
+            }
+            if (index >= number.Length)
+            {
+                return;
+            }
+
+            char nextchar = number[index];
+            string digits = map[nextchar];
+            for (int i = 0; i < digits.Length; i++)
+            {
+                getValidWords(number, index + 1, prefix + digits[i], wordSet, result);
+            }
+
+
+        }
+    }
+    // this would take O(n4) .. 

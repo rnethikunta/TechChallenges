@@ -1,0 +1,55 @@
+namespace LongestRepeatedSubString
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string s = LRS.lrs("banana");
+            
+        }
+    }
+
+    public class LRS
+    {
+
+        // return the longest common prefix of s and t
+        public static String lcp(String s, String t)
+        {
+            int n = Math.Min(s.Length, t.Length);
+            for (int i = 0; i < n; i++)
+            {
+                if (s[i] != t[i])
+                    return s.Substring(0, i);
+            }
+            return s.Substring(0, n);
+        }
+
+
+        // return the longest repeated string in s
+        public static String lrs(String s)
+        {
+
+            // form the N suffixes
+            int n = s.Length;
+            String[] suffixes = new String[n];
+            for (int i = 0; i < n; i++)
+            {
+                suffixes[i] = s.Substring(i);
+            }
+
+            // sort them
+            Array.Sort(suffixes);
+
+            // find longest repeated substring by comparing adjacent sorted suffixes
+            String lrs = "";
+            for (int i = 0; i < n - 1; i++)
+            {
+                String x = lcp(suffixes[i], suffixes[i + 1]);
+                if (x.Length > lrs.Length)
+                    lrs = x;
+            }
+            return lrs;
+        }
+    }
+
+}

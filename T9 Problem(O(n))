@@ -1,0 +1,60 @@
+public class T9Better
+    {
+    
+        // o(n) solution
+        public Dictionary<char, string> map;
+        string[] input = { null, null, "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ" };
+        public T9Better()
+        {
+
+        }
+        private Dictionary<char, int> LettersToNumberMap()
+        {
+            Dictionary<char, int> dicLToN = new Dictionary<char, int>();
+            for (int i = 0; i < input.Length; i++)
+            {
+                string s = input[i];
+                if (!string.IsNullOrEmpty(s))
+                {
+                    char[] t9Letters = s.ToCharArray();
+                    foreach (char letter in t9Letters)
+                    {
+                        //char c = (char)i;
+                        dicLToN.Add(char.ToLower(letter), i);
+                    }
+                }
+            }
+            return dicLToN;
+
+        }
+        private Dictionary<string, string> setupDic(string[] words)
+        {
+            Dictionary<char, int> letterToNumberMap = LettersToNumberMap();
+            Dictionary<string, string> wordsToNumbers = new Dictionary<string, string>();
+            foreach (string word in words)
+            {
+                string numbers = convertToT9(word, letterToNumberMap);
+                wordsToNumbers.Add(word, numbers);
+            }
+            return wordsToNumbers;
+        }
+        private string convertToT9(string word, Dictionary<char, int> letterToNumberMap)
+        {
+
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in word.ToCharArray())
+            {
+                if (letterToNumberMap.ContainsKey(c))
+                {
+                    var digit = letterToNumberMap[c];
+                    sb.Append(digit.ToString());
+                }
+            }
+            return sb.ToString();
+        }
+        public void getValidT9Words(string numbers, string[] words)
+        {
+            Dictionary<string, string> dic = setupDic(words);
+            var output = dic.Where(row => row.Value == numbers).Select(row => row.Key).ToList();
+        }
+    }

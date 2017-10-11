@@ -1,0 +1,30 @@
+  public int check(int x, int y, int p, int size)
+        { // O(1) 
+            if (p == 1)
+            {
+                ra[y]++;
+                ca[x]++;
+            }
+            else
+            {
+                ca[x]--;
+                ra[y]--;
+            }
+
+            if (x == y)
+                diag++; // similarly decrement for the other player.
+
+            if (y == size -x)
+                antidiag++; // similarly decrement for the other player.
+
+
+            if (ra[y] == size ||
+            ra[y] == - (size) ||
+            ca[x] == size ||
+            ca[x] == -(size)||
+                diag == size || diag == -(size)
+|| antidiag == size || antidiag == -(size))
+                return p; // 
+
+            return 0;
+        }
